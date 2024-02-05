@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: rgb(171, 143, 171);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 400px;
+            background-color:whitesmoke;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input,
+        select {
+            width: calc(100% - 16px);
+            padding: 8px;
+            margin-bottom: 12px;
+            box-sizing: border-box;
+        }
+
+        input[type="radio"],
+        input[type="checkbox"] {
+            width: auto;
+            margin-right: 8px;
+        }
+
+        .gender-label {
+            display: flex;
+            align-items: center;
+        }
+
+        .gender-label input {
+            margin-right: 4px;
+        }
+
+        button {
+            background-color: #575d88;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #b2aaca;
+        }
+
+        #result {
+            margin-top: 20px;
+            color: #333;
+        }
+
+        #terms {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>Sign In Form</h2>
+        <form id="sign-in-form" onsubmit="return validateForm()">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required oninput="validateName()">
+
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" required onchange="validateAge()">
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required onchange="validateEmail()">
+
+            <div class="gender-label">
+                <label>Gender:</label>
+                <input type="radio" id="male" name="gender" value="male" required>
+                <label for="male">Male</label>
+                <input type="radio" id="female" name="gender" value="female" required>
+                <label for="female">Female</label>
+            </div>
+
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" name="dob" required oninput="validateDOB()">
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required oninput="displayPassword()">
+
+            <div id="terms">
+                <input type="checkbox" id="termsCheckbox" required>
+                <label for="termsCheckbox">I agree to the terms and conditions</label>
+            </div>
+
+            <button type="submit">Sign In</button>
+        </form>
+
+        <div id="result"></div>
+    </div>
+
+    <script>
+       function validateForm() {
+            // Implement your form validation logic here
+            // You can use the functions validateName(), validateAge(), validateEmail(), validateDOB(), and displayPassword() for specific validations
+            // Return true if the form is valid, false otherwise
+            // For example:
+            // if (some_condition) {
+            //     alert("Invalid form! Please check your inputs.");
+            //     return false;
+            // }
+            // return true;
+
+            // In this example, the form is always considered valid
+            var isValid = true;
+
+            // Add your specific validation logic here
+            // Example: Check if the username is not empty
+            var usernameInput = document.getElementById("username");
+            if (usernameInput.value.trim() === "") {
+                alert("Username cannot be empty.");
+                isValid = false;
+            }
+
+            // Add other validation checks as needed
+
+            if (isValid) {
+                // The form is valid, display a success message
+                alert("Registration sucessful!");
+
+                // You can also update the content of a div or show a modal instead of using alert
+                // Example:
+                // var resultDiv = document.getElementById("result");
+                // resultDiv.innerText = "You are registered!";
+            }
+
+            return isValid;
+        }
+
+
+        function validateName() {
+            // Check if the name contains numbers
+            var nameInput = document.getElementById("username");
+            if (/\d/.test(nameInput.value)) {
+                alert("Name should not contain numbers.");
+                nameInput.value = nameInput.value.replace(/\d/g, ''); // Remove numbers from the input
+            }
+        }
+
+        function validateAge() {
+            // Check if age is greater than or equal to 18
+            var ageInput = document.getElementById("age");
+            if (parseInt(ageInput.value) < 18) {
+                alert("Age must be 18 or older.");
+                ageInput.value = ""; // Clear the age input
+            }
+        }
+
+        function validateEmail() {
+            // Check if the email contains @ followed by .
+            var emailInput = document.getElementById("email");
+            if (!/@.*\./.test(emailInput.value)) {
+                alert("Invalid email format.");
+                emailInput.value = ""; // Clear the email input
+            }
+        }
+
+       function validateDOB() {
+            // Get the selected date from the input field
+            var dobInput = document.getElementById("dob");
+            var selectedDate = new Date(dobInput.value);
+
+            // Set the start and end dates for the valid period
+            var startDate = new Date("2020-01-01");
+            var endDate = new Date("2024-12-31");
+
+            // Check if the selected date is within the valid period
+            if (selectedDate >= startDate && selectedDate <= endDate) {
+                // Date is within the valid period
+                // You can add additional logic or remove this comment
+            } else {
+                // Date is outside the valid period, show an alert or take appropriate action
+                alert("Invalid date. Please select a date between 2020 and 2024.");
+                dobInput.value = ""; // Clear the date input
+            }
+        }
+
+
+        function displayPassword() {
+            // Replace the dot with # in the password field
+            var passwordInput = document.getElementById("password");
+            passwordInput.value = passwordInput.value.replace(/\./g, '#');
+        }
+    </script>
+
+</body>
+
+</html>
