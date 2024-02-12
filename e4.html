@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Keyboard Events Demo</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+    }
+    #input {
+        width: 300px;
+        margin: 50px auto;
+        padding: 10px;
+        font-size: 16px;
+    }
+    #message {
+        font-size: 18px;
+        color: green;
+    }
+</style>
+</head>
+<body>
+
+<input id="input" 
+       type="text"
+       placeholder="Type something here..." 
+       onkeydown="onKeyDown(event)" 
+       onkeypress="onKeyPress(event)" 
+       onkeyup="onKeyUp(event)">
+
+<p id="message"></p>
+
+<script>
+    function onKeyDown(event) {
+        document.getElementById("message").innerText = "Key Down: " + event.key;
+    }
+
+    function onKeyPress(event) {
+        document.getElementById("message").innerText = "Key Press: " + event.key;
+    }
+
+    function onKeyUp(event) {
+        document.getElementById("message").innerText = "Key Up: " + event.key;
+    }
+</script>
+
+</body>
+</html>
