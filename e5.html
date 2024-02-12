@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Event Demo</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+    }
+    #image {
+        width: 300px;
+        margin: 50px auto;
+    }
+</style>
+</head>
+<body>
+
+<img id="image" src="C:\Users\user\Downloads\pexels-pixabay-235986.jpg" alt="Placeholder Image" 
+     onabort="onAbort()" 
+     onload="onLoad()" 
+     onselect="onSelect()">
+
+<p id="message"></p>
+
+<script>
+    function onAbort() {
+        document.getElementById("message").innerText = "Image loading aborted!";
+    }
+
+    function onLoad() {
+        document.getElementById("message").innerText = "Image loaded successfully!";
+    }
+
+    function onSelect() {
+        document.getElementById("message").innerText = "Text selected!";
+    }
+</script>
+
+</body>
+</html>
