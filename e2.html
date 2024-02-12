@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Drag and Drop Demo</title>
+<style>
+    #draggable {
+        width: 100px;
+        height: 100px;
+        background-color: blue;
+        color: white;
+        text-align: center;
+        line-height: 100px;
+        position: absolute;
+        top: 50px;
+        left: 50px;
+        cursor: pointer;
+    }
+
+    #dropzone {
+        width: 200px;
+        height: 200px;
+        background-color: lightgray;
+        border: 2px dashed black;
+        position: absolute;
+        top: 200px;
+        left: 50px;
+    }
+</style>
+</head>
+<body>
+
+<div id="draggable" draggable="true" ondrag="drag(event)" ondragend="dragEnd(event)">Drag me!</div>
+
+<div id="dropzone" ondragenter="dragEnter(event)" ondrop="drop(event)" ondragover="allowDrop(event)">
+    Drop zone
+</div>
+
+<script>
+    function drag(event) {
+        event.dataTransfer.setData("text", event.target.id);
+    }
+
+    function allowDrop(event) {
+        event.preventDefault();
+    }
+
+    function dragEnter(event) {
+        event.preventDefault();
+        event.target.style.backgroundColor = "lightblue";
+    }
+
+    function drop(event) {
+        event.preventDefault();
+        var data = event.dataTransfer.getData("text");
+        var draggableElement = document.getElementById(data);
+        event.target.appendChild(draggableElement);
+        event.target.style.backgroundColor = "lightgray";
+        draggableElement.style.backgroundColor = "lightgray"; // Change color of draggable box
+    }
+
+    function dragEnd(event) {
+        var draggableElement = event.target;
+        draggableElement.style.backgroundColor = "lightgray"; // Change color of draggable box
+    }
+</script>
+
+</body>
+</html>
