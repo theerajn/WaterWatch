@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Problem Reporting Form</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-mod-3">
+
+            </div>
+            <div class="col-md-6 main">
+                <form action="/report" method="POST">
+                    <h2> Report a Problem</h2>
+                    <input type="text" class="box" id="title" name="title" placeholder="Title" required />
+                    <br>
+                    <textarea class="box" id="description" name="description" placeholder="Description" rows="4"
+                        required></textarea>
+                    <br>
+                    <input type="text" class="box" id="name" name="name" placeholder="Your Name" required />
+                    <br>
+                    <input type="email" class="box" id="email" name="email" placeholder="Your Email" required />
+                    <br>
+                    <input type="tel" class="box" id="phone" name="phone" placeholder="Your Phone" required />
+                    <br>
+                    <input type="submit" value="Submit" id="submit" />
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
